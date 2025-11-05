@@ -31,4 +31,13 @@ public class CssSelectors {
         loopa.click();
 
     }
+
+    @Test
+    public void cssSeletorsRassrochka(){
+        driver.get("https://sst.by/");
+        WebElement rassrochka = driver.findElement(By.cssSelector(".link[href='rassrochka/']"));
+        WebElement buttonBanner = driver.findElement(By.cssSelector(""));
+
+
+    }
 }
