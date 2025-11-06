@@ -24,7 +24,10 @@ public class BrowsersService {
                 chromeOptions.addArguments("--silent");
                 chromeOptions.addArguments("--start-maximized");
                 chromeOptions.addArguments("--disable-notifications");
-                chromeOptions.addArguments("--disable-features=AutofillServerCommunication");
+
+                //вот эта настройка помогла убрать поп-ап при логине, нашел на реддите)))
+                chromeOptions.addArguments("--guest");
+
 
                 driver = new ChromeDriver(chromeOptions);
 
@@ -42,8 +45,10 @@ public class BrowsersService {
     }
 
     public WebDriver getDriver() {
-        driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
+        driver.manage().window().maximize();
+
+
 
         return driver;
     }
