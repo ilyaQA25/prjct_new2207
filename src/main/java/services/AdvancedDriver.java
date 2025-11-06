@@ -18,6 +18,8 @@ public class AdvancedDriver {
         chromeOptions.addArguments("--ignore-certificate-errors");
         chromeOptions.addArguments("--silent");
         chromeOptions.addArguments("--start-maximized");
+        chromeOptions.addArguments("--disable-notifications");
+        chromeOptions.addArguments("--disable-features=AutofillServerCommunication");
         //chromeOptions.addArguments("--headless");
 
         return chromeOptions;
