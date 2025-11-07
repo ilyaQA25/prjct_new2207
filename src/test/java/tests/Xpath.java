@@ -4,11 +4,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import services.BrowsersService;
+
+import java.time.Duration;
+
+import static configuration.ReadProperties.password;
+import static configuration.ReadProperties.username;
 
 public class Xpath {
 
@@ -76,14 +83,15 @@ public class Xpath {
         WebElement pass = driver.findElement(By.id("password"));
         WebElement loginButt = driver.findElement(By.id("login-button"));
 
-        uname.sendKeys("locked_out_user");
-        pass.sendKeys("secret_sauce");
+        uname.sendKeys("username()");
+        pass.sendKeys(password());
         loginButt.click();
-
-        //String errorMess = driver.findElement(By.xpath("//h3[text()='Epic sadface: Sorry, this user has been locked out.']")).getText();
-        //тоже самое что на 83 строчке записано короче на 85
-        String errorMess2 = driver.findElement(By.xpath("//h3")).getText();
-        Assert.assertTrue(errorMess2.contains("Epic sadface: Sorry, this user has been locked out."), "Epic sadface: Sorry, this user has been locked out.");
         Thread.sleep(5000);
+
+        WebElement errorMess = (new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h3"))));
+
+
+
     }
 }

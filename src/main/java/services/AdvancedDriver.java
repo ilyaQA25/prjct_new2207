@@ -9,6 +9,7 @@ public class AdvancedDriver {
     public WebDriver getDriver() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
 
+
         return new ChromeDriver(getChromeOptions());
     }
 
@@ -18,11 +19,7 @@ public class AdvancedDriver {
         chromeOptions.addArguments("--ignore-certificate-errors");
         chromeOptions.addArguments("--silent");
         chromeOptions.addArguments("--start-maximized");
-        chromeOptions.addArguments("--disable-notifications");
-        chromeOptions.addArguments("--disable-plugins");
-        chromeOptions.addArguments("--disable-features=AutofillServerCommunication");
-        chromeOptions.addArguments("--disable-popup-blocking");
-        chromeOptions.addArguments("--disable-extensions");
+
         //chromeOptions.addArguments("--user-data-dir=/path/to/new/temp/profile");
         //chromeOptions.addArguments("--headless");
 
