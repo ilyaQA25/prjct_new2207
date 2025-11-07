@@ -68,4 +68,22 @@ public class Xpath {
         backtoProducts.click();
         Thread.sleep(5000);
     }
+
+    @Test
+    public void xpathErrorTest() throws InterruptedException {
+        driver.get("https://www.saucedemo.com/");
+        WebElement uname = driver.findElement(By.id("user-name"));
+        WebElement pass = driver.findElement(By.id("password"));
+        WebElement loginButt = driver.findElement(By.id("login-button"));
+
+        uname.sendKeys("locked_out_user");
+        pass.sendKeys("secret_sauce");
+        loginButt.click();
+
+        //String errorMess = driver.findElement(By.xpath("//h3[text()='Epic sadface: Sorry, this user has been locked out.']")).getText();
+        //тоже самое что на 83 строчке записано короче на 85
+        String errorMess2 = driver.findElement(By.xpath("//h3")).getText();
+        Assert.assertTrue(errorMess2.contains("Epic sadface: Sorry, this user has been locked out."), "Epic sadface: Sorry, this user has been locked out.");
+        Thread.sleep(5000);
+    }
 }
