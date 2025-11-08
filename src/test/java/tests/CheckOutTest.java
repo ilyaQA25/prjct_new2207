@@ -1,24 +1,15 @@
 package tests;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import services.BrowsersService;
 
-import java.time.Duration;
-
-import static configuration.ReadProperties.password;
-import static configuration.ReadProperties.username;
-
-public class Xpath {
-
+public class CheckOutTest {
     private WebDriver driver;
     @BeforeMethod
     public void setup() {
@@ -69,29 +60,10 @@ public class Xpath {
         continua.click();
 
         WebElement finita = driver.findElement(By.xpath("//button[@id='finish']"));
-
+        Assert.assertTrue(finita.isDisplayed(),"there is no finish button here");
         finita.click();
         WebElement backtoProducts = driver.findElement(By.xpath("//button[@id='back-to-products']"));
         backtoProducts.click();
         Thread.sleep(5000);
-    }
-
-    @Test
-    public void xpathErrorTest() throws InterruptedException {
-        driver.get("https://www.saucedemo.com/");
-        WebElement uname = driver.findElement(By.id("user-name"));
-        WebElement pass = driver.findElement(By.id("password"));
-        WebElement loginButt = driver.findElement(By.id("login-button"));
-
-        uname.sendKeys("username()");
-        pass.sendKeys(password());
-        loginButt.click();
-        Thread.sleep(5000);
-
-        WebElement errorMess = (new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h3"))));
-
-
-
     }
 }
