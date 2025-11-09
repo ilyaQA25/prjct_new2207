@@ -3,6 +3,7 @@
     <test name="MyTest">
         <classes>
             <class name="tests.CheckOutTest"/>
+            <class name="tests.ErrorTest"/>
         </classes>
     </test>
 </suite>
