@@ -1,4 +1,6 @@
 package tests;
 
-public class LoginTest {
+import baseEntities.BaseTest;
+
+public class LoginTest extends BaseTest {
 }

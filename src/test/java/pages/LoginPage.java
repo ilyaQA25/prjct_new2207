@@ -3,16 +3,39 @@ package pages;
 import baseEntities.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class LoginPage extends BasePage {
-    private By username = By.id("user-name");
-    private By passw = By.id("password");
-    private By logButton = By.id("login-button");
+    // Блок описания локаторов для элементов
+    private final By emailInputLocator = By.id("name");
+    private final By pswInputLocator = By.id("password");
+    private final By logInButtonLocator = By.id("button_primary");
+    private By errorTextLocator = By.className("error-text");
 
-    public LoginPage(WebDriver driver){
+    // Блок иницализации
+    public LoginPage(WebDriver driver) {
         super(driver);
     }
 
+    @Override
+    protected By getPageIdentifier() {
+        return emailInputLocator;
+    }
 
+    // Блок атомарных методов
+    public WebElement getEmailInput() {
+        return waitServices.waitForExists(emailInputLocator);
+    }
 
+    public WebElement getPswInput() {
+        return waitServices.waitForExists(pswInputLocator);
+    }
+
+    public WebElement getLogInButton() {
+        return waitServices.waitForExists(logInButtonLocator);
+    }
+
+    public WebElement getErrorTextElement() {
+        return waitServices.waitForExists(errorTextLocator);
+    }
 }
