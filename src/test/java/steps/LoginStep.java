@@ -19,7 +19,6 @@ public class LoginStep extends BaseStep {
 
     public CatalogPage successLogin(String email, String psw) {
         login(email, psw);
-
         return catalogPage;
     }
 

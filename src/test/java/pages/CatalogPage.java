@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 
 public class CatalogPage extends BasePage {
     // Блок описания локаторов для элементов
-    private final By backPack = By.id("name");
+    private final By backPack = By.xpath("//div[contains(text(),'Sauce Labs Backpack')]");
 
 
     // Блок иницализации
