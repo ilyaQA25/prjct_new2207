@@ -13,4 +13,9 @@ public class LoginTest extends BaseTest {
     public void succLogin(){
         Assert.assertTrue(loginPage.succLog().isPageOpened());
     }
+
+    @Test
+    public void errorLog(){
+        loginPage.geterrorMess();
+    }
 }

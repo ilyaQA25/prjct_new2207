@@ -11,6 +11,7 @@ public class LoginPage extends BasePage {
     private final By username = By.id("user-name");
     private final By pswInputLocator = By.id("password");
     private final By logInButtonLocator = By.id("login-button");
+    private final By errorMess = By.xpath("//*[@data-test='error-button']");
     private CatalogPage catalogPage;
     //private By errorTextLocator = By.className("error-text");
 
@@ -37,6 +38,10 @@ public class LoginPage extends BasePage {
         return waitServices.waitForExists(logInButtonLocator);
     }
 
+    public WebElement geterrorMess() {
+        return waitServices.waitForExists(errorMess);
+    }
+
     //methods
     public CatalogPage succLog() {
         getUsername().sendKeys(ReadProperties.username());
@@ -44,5 +49,12 @@ public class LoginPage extends BasePage {
         getLogInButton().click();
         catalogPage = new CatalogPage(driver);
         return catalogPage;
+    }
+
+    public void errorlog(){
+        getUsername().sendKeys("ReadProperties.username()");
+        getPswInput().sendKeys(ReadProperties.password());
+        getLogInButton().click();
+        //geterrorMess();
     }
 }
