@@ -16,6 +16,6 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void errorLog(){
-        loginPage.geterrorMess();
+        loginPage.errorlog();
     }
 }
