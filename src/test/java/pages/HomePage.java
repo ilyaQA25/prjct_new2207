@@ -4,11 +4,15 @@ import baseEntities.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 public class HomePage extends BasePage {
     private final By homeLogo = By.xpath("//*[@class='header__logo-wrap']");
     private final By advertisement = By.xpath("//span[text()='Объявления']");
-    private final By motoClass = By.xpath("//span[text()='Мототехника']");
+    private final By motoClass = By.xpath("//a[text()='Мототехника']");
+    private MotoPage motoPage;
+
+
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -32,6 +36,10 @@ public class HomePage extends BasePage {
     }
 
     public MotoPage findMotocycle(){
-        getAdvertisement().hover
+        WebElement moto = getMotoClass();
+        new Actions(driver).moveToElement(moto).perform();
+        moto.click();
+        motoPage = new MotoPage(driver);
+        return motoPage;
     }
 }

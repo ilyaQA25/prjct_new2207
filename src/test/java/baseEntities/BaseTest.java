@@ -4,20 +4,22 @@ import configuration.ReadProperties;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import pages.LoginPage;
+import pages.HomePage;
 import services.BrowsersService;
 
 
 public class BaseTest {
     protected WebDriver driver;
-    protected LoginPage loginPage;
+
+    protected HomePage homePage;
 
 
     @BeforeMethod
     public void setup() {
         driver = new BrowsersService().getDriver();
 
-        loginPage = new LoginPage(driver);
+
+        homePage = new HomePage(driver);
 
         driver.get(ReadProperties.getUrl());
     }
