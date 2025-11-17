@@ -11,4 +11,9 @@ public class MotoCycleTest extends BaseTest {
     public void openMotoPart(){
         Assert.assertTrue(homePage.findMotocycle().isPageOpened());
     }
+
+    @Test
+    public void selectCar() throws InterruptedException {
+        homePage.selectVolvo();
+    }
 }
