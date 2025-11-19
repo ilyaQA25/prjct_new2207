@@ -16,7 +16,7 @@ public class HomePage extends BasePage {
     private final By searchInDropdown = By.xpath("//*[@class='dropdown__input']");
     private final By dropdownModels = By.xpath("//span[text()='Модель']");
     private final By volvoInDropDown = By.xpath("//button[text()='Volvo']");
-    private final By showButton = By.xpath("//button/span[contains(text(),'Показать')]");
+    private final By showButton = By.xpath("//div/a[@href='https://cars.av.by/volvo']");
 
 
 
