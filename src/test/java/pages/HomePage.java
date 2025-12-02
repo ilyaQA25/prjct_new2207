@@ -2,9 +2,14 @@ package pages;
 
 import baseEntities.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HomePage extends BasePage {
     private final By homeLogo = By.xpath("//*[@class='header__logo-wrap']");
@@ -17,6 +22,7 @@ public class HomePage extends BasePage {
     private final By dropdownModels = By.xpath("//span[text()='Модель']");
     private final By volvoInDropDown = By.xpath("//button[text()='Volvo']");
     private final By showButton = By.xpath("//div/a[@href='https://cars.av.by/volvo']");
+    private final By cookiesButton = By.xpath("//*[text()='Принять']");
 
 
 
@@ -32,6 +38,10 @@ public class HomePage extends BasePage {
 
     public WebElement getHomeLogo() {
         return waitServices.waitForExists(homeLogo);
+    }
+
+    public WebElement getCookiesButton(){
+        return waitServices.waitForExists(cookiesButton);
     }
 
     public WebElement getShowButton(){
@@ -75,9 +85,9 @@ public class HomePage extends BasePage {
         markDropdown.click();
         getSearchInDropdown().sendKeys("Volvo");
         getVolvoInDropDown().click();
-        getShowButton().click();
-        Thread.sleep(5000);
-        /*getDropdownModels().click();
-        getSearchInDropdown().sendKeys("S90");*/
+        WebElement showButton = getShowButton();
+        new Actions(driver).moveToElement(showButton).perform();
+        showButton.click();
+
     }
 }
