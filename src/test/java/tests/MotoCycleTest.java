@@ -1,19 +1,28 @@
 package tests;
 
-import baseEntities.BaseTest;
-import org.testng.Assert;
+
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.HomePage;
+import services.SelenideConfig;
 
-public class MotoCycleTest extends BaseTest {
+import static com.codeborne.selenide.Selenide.*;
 
+public class MotoCycleTest {
 
-    @Test
-    public void openMotoPart(){
-        Assert.assertTrue(homePage.findMotocycle().isPageOpened());
+    @BeforeMethod
+    public void setup() {
+        SelenideConfig.setup();
+        open("/");
     }
 
     @Test
-    public void selectCar() throws InterruptedException {
-        homePage.selectVolvo();
+    public void openMotoPart() {
+        new HomePage().open().findMotocycle().isPageOpened();
+    }
+
+    @Test
+    public void selectCar() {
+        new HomePage().open().selectVolvo();
     }
 }

@@ -1,30 +1,23 @@
 package baseEntities;
+import com.codeborne.selenide.SelenideElement;
 import configuration.ReadProperties;
 import org.openqa.selenium.By;
-import services.WaitService;
-import services.WaitService;
 
 import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
 
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.open;
+
 public abstract class BasePage {
-    protected WebDriver driver;
-    protected WaitService waitServices;
-
-
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
-        waitServices = new WaitService(driver, Duration.ofSeconds(ReadProperties.timeout()));
-    }
-
-    protected abstract By getPageIdentifier();
+    protected abstract SelenideElement getPageIdentifier();
 
     public boolean isPageOpened() {
-        return waitServices.waitForExists(getPageIdentifier()).isDisplayed();
+        return getPageIdentifier().shouldBe(visible).isDisplayed();
     }
 
-    public void openPageByUrl(String pagePath)  {
-        driver.get(ReadProperties.getUrl() + pagePath);
+    public void openPageByUrl(String pagePath) {
+        open(pagePath);
     }
 }
