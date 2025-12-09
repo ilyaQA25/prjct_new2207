@@ -4,16 +4,21 @@ import com.codeborne.selenide.SelenideElement;
 import configuration.ReadProperties;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class LoginPage {
-    private final SelenideElement usernameInput = $("#user-name");
-    private final SelenideElement passwordInput = $("#password");
-    private final SelenideElement loginButton   = $("#login-button");
+    private SelenideElement usernameInput = $("#user-name");
+    private SelenideElement passwordInput = $("#password");
+    private SelenideElement loginButton   = $("#login-button");
 
-    public void open(String url){
+    public LoginPage openPage() {
         open("https://www.saucedemo.com/");
-        usernameInput.setValue(ReadProperties.username());
-        passwordInput.setValue(ReadProperties.password());
+        return this;
+    }
+
+    public void login(String username, String password) {
+        usernameInput.setValue(username);
+        passwordInput.setValue(password);
         loginButton.click();
     }
 }
