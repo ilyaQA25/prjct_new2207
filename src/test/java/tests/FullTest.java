@@ -13,9 +13,7 @@ public class FullTest {
         // создаёт и инициализирует PageObject
         LoginPage loginPage = page(LoginPage.class);
 
-        loginPage
-                .openPage()
-                .login("standard_user", "secret_sauce");
+        loginPage.openPage().login("standard_user", "secret_sauce");
     }
     }
 
