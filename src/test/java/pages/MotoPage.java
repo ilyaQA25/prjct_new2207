@@ -15,5 +15,4 @@ public class MotoPage extends BasePage {
         return motocycle;
     }
 
-
 }
