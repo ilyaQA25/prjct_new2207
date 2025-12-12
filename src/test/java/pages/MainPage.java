@@ -5,8 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Condition.enabled;
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byTitle;
 import static com.codeborne.selenide.Selenide.*;
@@ -17,6 +16,7 @@ public class MainPage extends BasePage {
     private final SelenideElement yearsDropdown = $("[title='Год от']");
     private final SelenideElement buttonShow = $("a.button--primary");
     private final SelenideElement cookieButton = $(byText("Отказаться"));
+    private final SelenideElement allParametrs = $(byText("Все параметры"));
 
 
     @Override
@@ -39,21 +39,21 @@ public class MainPage extends BasePage {
     }
 
 
-    public void selectPickUp() {
+    public void selectPickUpF150() {
         marksDropdown.click();
         $(byText("Ford")).click();
 
-        // 2. Ждем, пока список моделей "оживет" после выбора марки.
-        // Selenide будет ждать (по умолчанию 4 сек), пока атрибут disabled исчезнет.
+        sleep(1000); // Даем 1 секунду сайту на "протупливание" и обновление DOM
+
         $("#p-6-0-3-model")
-                .shouldBe(enabled, Duration.ofSeconds(10))
+                .shouldBe(enabled)
                 .click();
 
         $(byText("F-150")).click();
+    }
 
-        //$("a.button--primary")
-         //       .shouldHave(text("Показать"), Duration.ofSeconds(10))
-          //      .click();
+    public void selectJustPickUps(){
+        allParametrs.click();
     }
 }
 /*private final SelenideElement homeLogo = $x("//*[@class='header__logo-wrap']");

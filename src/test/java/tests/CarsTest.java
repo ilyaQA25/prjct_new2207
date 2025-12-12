@@ -23,7 +23,13 @@ public class CarsTest {
         MainPage mainPage = new MainPage();
         mainPage.
                 openPage().
-                selectPickUp();
+                selectPickUpF150();
 
+    }
+
+    @Test
+    public void selctingAllPickUps(){
+        MainPage mainPage = new MainPage();
+        mainPage.openPage().selectJustPickUps();
     }
 }
