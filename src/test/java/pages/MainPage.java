@@ -2,6 +2,8 @@ package pages;
 
 import baseEntities.BasePage;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebElementCondition;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -40,16 +42,25 @@ public class MainPage extends BasePage {
 
 
     public void selectPickUpF150() {
-        marksDropdown.click();
+        $("#p-6-0-2-brand").click();
+
+        // 2. Выбираем "Ford" в списке
         $(byText("Ford")).click();
 
-        sleep(1000); // Даем 1 секунду сайту на "протупливание" и обновление DOM
+        // 3. Ждем, пока кнопка марки обновится.
+        // ВАЖНО: Ищем элемент заново через $, чтобы не поймать StaleElement.
+        // Даем ему время (4 сек по умолчанию), чтобы текст сменился на "Ford".
 
-        $("#p-6-0-3-model")
-                .shouldBe(enabled)
-                .click();
 
+        // 4. Теперь переходим к моделям.
+        // Опять же, ищем кнопку модели заново.
+        $("#p-6-0-3-model").shouldBe(enabled, Duration.ofSeconds(20)).click();
         $(byText("F-150")).click();
+
+        /*$("a.button--primary")
+                .shouldBe(hidden)
+                .shouldHave(text("Показать"));*/
+
     }
 
     public void selectJustPickUps(){

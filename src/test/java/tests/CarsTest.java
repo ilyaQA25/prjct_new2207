@@ -21,9 +21,8 @@ public class CarsTest {
     public void findFordPickup() {
 
         MainPage mainPage = new MainPage();
-        mainPage.
-                openPage().
-                selectPickUpF150();
+        mainPage.openPage();
+        mainPage.selectPickUpF150();
 
     }
 
