@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -22,7 +23,7 @@ public class Checkboxes {
     @BeforeTest
     public void setUp() {
         driver = new ChromeDriver();
-        driver.get("https://the-internet.herokuapp.com/checkboxes");
+        driver.get("https://the-internet.herokuapp.com/dropdown");
     }
 
 
@@ -46,10 +47,22 @@ public class Checkboxes {
         Assert.assertFalse(secondCheckbox.isSelected());
 
 
-       /* Assert.assertTrue(groupOfcheckboxes.get(1).isSelected());
-        groupOfcheckboxes.get(1).click();
+    }
 
-        Assert.assertFalse(groupOfcheckboxes.get(1).isSelected());*/
+    @Test
+    public void dropdown() throws InterruptedException {
+        WebElement dropdownElement = driver.findElement(By.xpath("//select[@id='dropdown']"));
+        Select select = new Select(dropdownElement);
+        select.selectByVisibleText("Option 1");
+        select.selectByVisibleText("Option 2");
+        Thread.sleep(5000);
+
+        WebElement selectedOption = select.getFirstSelectedOption();
+
+
+        // 3. Ассерт на то, что выбрана именно "Option 1"
+        Assert.assertEquals(selectedOption.getText(), "Option 2", "Опция 'Option 1' не была выбрана или не отображается!");
+        System.out.println("Тест пройден: Успешно выбрана и проверена опция: '" + selectedOption.getText() + "'");
 
     }
 
